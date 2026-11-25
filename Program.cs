@@ -69,6 +69,52 @@ internal class Program
 {
     static void Main()
     {
-        
+        Graph graph = new();
+        graph.AddEdge(0, 1);
+        graph.AddEdge(1, 2);
+        graph.AddEdge(0, 3);
+        graph.AddEdge(3, 4);
+        graph.AddEdge(1, 4);
+        graph.AddEdge(6, 7);
+        graph.AddEdge(4, 6);
+        graph.AddEdge(2, 5);
+        graph.AddEdge(4, 5);
+        graph.AddVertex(8);
+
+        Console.WriteLine($"BFS(0): [{string.Join(",", graph.BFS(0))}]");
+        Console.WriteLine($"DFS(0): [{string.Join(",", graph.DFS(0))}]");
+        Console.WriteLine($"BFS(42): [{string.Join(",", graph.BFS(42))}]");
+        Console.WriteLine($"Shortest path from 0 to 7: [{string.Join(",", graph.ShortestPath(0,7))}]");
+        Console.WriteLine($"Shortest path from 0 to 8: [{string.Join(",", graph.ShortestPath(0,8))}]");
+        Console.WriteLine($"Has edge (4,1): {graph.HasEdge(4,1)}");
+        Console.WriteLine($"Pieces: {graph.CountPieces()}");
+        Console.WriteLine($"Has cycle: {graph.HasCycle()}");
+
+        Console.WriteLine();
+        Console.WriteLine("Unmodified Graph:");
+        graph.Print();
+        Console.WriteLine("Add edge (5,4)");
+        graph.AddEdge(5,4);
+        Console.WriteLine("Add edge (7,7)");
+        graph.AddEdge(7,7);
+        Console.WriteLine("Same Graph:");
+        graph.Print();
+
+
+        Console.WriteLine();
+        Console.WriteLine("Remove edge (1,4)");
+        graph.RemoveEdge(1,4);
+        Console.WriteLine("Remove edge (4,5)");
+        graph.RemoveEdge(4,5);
+        Console.WriteLine("Has cycle:");
+        Console.WriteLine(graph.HasCycle());
+
+        Console.WriteLine();
+        Console.WriteLine("Remove vertex (4)");
+        graph.RemoveVertex(4);
+        Console.WriteLine("Graph:");
+        graph.Print();
+        Console.WriteLine("Pieces:");
+        Console.WriteLine(graph.CountPieces());
     }
 }
